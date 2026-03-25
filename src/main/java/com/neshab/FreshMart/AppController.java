@@ -1,18 +1,21 @@
 package com.neshab.FreshMart;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 
-@RestController
+@Controller
 public class AppController {
 
 
     @RequestMapping("/")
+    @ResponseBody
     public String home() {
-        return "home-page.html";
+        return "Welcome to home-page";
     }
+
     @RequestMapping("/homepage")
     public String homePage() {
         return "home-page.html";
@@ -21,6 +24,7 @@ public class AppController {
 
 
     @GetMapping("/welcome")
+    @ResponseBody
     public String welcomeMessage() {
         return "<html><body><h1>Welcome to FreshMart!</h1>"
                 + "<form action='/status' method='get'>"
@@ -29,6 +33,7 @@ public class AppController {
     }
 
     @GetMapping("/status")
+    @ResponseBody
     public String appStatus()
     {
         return "FreshMart application is running smoothly!";
@@ -36,6 +41,7 @@ public class AppController {
 
 
     @GetMapping("/chat")
+    @ResponseBody
     public String getChatResponse() {
         ResponseGenerator generator = new ResponseGenerator();
         return generator.generateResponse();  // now returns a String
